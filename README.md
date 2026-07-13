@@ -193,7 +193,7 @@ grading (see `adapters/`).
 
 ## Team
 
-Built by **Daniyal Kozyrev** for the AMD Developer Hackathon: ACT II (Unicorn Track).
+Built by **Mandem67** for the AMD Developer Hackathon: ACT II (Unicorn Track).
 
 ## License
 
