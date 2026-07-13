@@ -4,7 +4,20 @@
 **Certo benchmarks, red-teams, scores, certifies and helps improve production AI agents.**
 
 > Built for the **AMD Developer Hackathon: ACT II** — Unicorn Track.
-> **Live demo:** _add your URL_ · **Video:** _add your URL_ · No login required — open `/audit`.
+>
+> ▶️ **Live demo:** **https://certo-amd-hackathon.vercel.app** — click **“Try the live demo”** (one
+> click, no signup) to land in a dashboard with a ready audit. · 🎥 **Video:** _add your URL_
+
+### Reviewing it in 2 minutes (for judges)
+
+1. Open **https://certo-amd-hackathon.vercel.app** and click **“Try the live demo”** — you're signed
+   in as a shared `demo` account and dropped into the dashboard (no credentials needed).
+2. Open the **Helpdesk Concierge** audit → read the **Trust Score** and category breakdown.
+3. Expand a failed finding (e.g. *prompt injection* / *data exposure*) → see the **evidence**, the two
+   **Fireworks judges' votes + disagreement**, the **business impact**, and the **standards** it maps to.
+4. Click **Generate fix** → a third Fireworks model returns a concrete fix + system-prompt patch.
+5. Want a fully live run? Click **New audit**, paste any OpenAI-compatible endpoint, and watch all 36
+   probes run in ~30–60s. There's also a fully public sample at **/audit** (no login at all).
 
 ---
 
@@ -80,6 +93,13 @@ verdict**:
   verdict/fix. Without a key the audit runs in **deterministic demo mode**.
 - Gemma-ready: point any of the three model vars at a Gemma model on Fireworks to run Gemma.
 
+**What actually runs.** A *live* audit (the **New audit** button) makes real inference calls: the
+target agent is invoked per probe, and **35 of the 36 probes are LLM-judged** (30 model + 5 hybrid; 1
+consistency probe is deterministic by design). With the ensemble on, that's **~2 Fireworks calls per
+probe (~68 per audit)**. The public **/audit** sample and the demo dashboard's first audit are a
+**cached real report** (produced by a real live run and clearly labeled *Sample*) so reviewers get a
+full report instantly; **New audit** re-runs everything live.
+
 ## Quickstart (Docker)
 
 ```bash
@@ -142,8 +162,24 @@ backend/    FastAPI — audit engine (probes · detectors · Fireworks judges ·
 frontend/   Next.js 15 — audit report + Trust Score + findings + certificate
 sdk/        thin Python client to stream an agent's trace to Certo
 adapters/   wrap a local CLI agent as an OpenAI-compatible endpoint
-docs/       submission texts, demo & video scripts, architecture
+docs/       submission texts (SUBMISSION.md), demo script (DEMO.md), cover (cover.html)
 ```
+
+## Tech stack
+
+- **Backend:** Python · FastAPI · async SQLAlchemy 2.0 · Pydantic · SQLite (Postgres-ready).
+- **Frontend:** Next.js 15 (App Router) · React · TypeScript · Tailwind CSS.
+- **Models:** Fireworks AI on AMD infrastructure (`gpt-oss-120b`, `glm-5p2`, `deepseek-v4-pro`),
+  OpenAI-compatible client.
+- **Infra:** Docker + docker-compose · backend on Railway · frontend on Vercel.
+
+## Supported agents
+
+Certo is **framework-agnostic**: it audits any agent exposed as an **OpenAI-compatible chat
+endpoint** (`base_url` / `model` / `api_key` / `system_prompt`) — so agents built with the OpenAI SDK,
+LangChain, LlamaIndex, CrewAI, PydanticAI or a custom stack all work, as long as they speak that API.
+An answer-only agent can also expose its real steps via an inline `<certo:trace>` block for per-step
+grading (see `adapters/`).
 
 ## Limitations & security disclaimer
 
@@ -154,6 +190,10 @@ docs/       submission texts, demo & video scripts, architecture
   tool-executing integration produces a richer trace. This is called out in findings.
 - No customer data or secrets are stored in this repository; keys live only in a local `.env`.
 
+## Team
+
+Built by **Daniyal Kozyrev** for the AMD Developer Hackathon: ACT II (Unicorn Track).
+
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Original work; all dependencies are permissively licensed.
