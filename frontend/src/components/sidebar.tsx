@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Plus, ScanSearch, Settings, ShieldCheck } from "lucide-react";
+import { Activity, Bot, Footprints, LayoutDashboard, Plus, Settings, ShieldCheck } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 
 const NAV = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-  { href: "/audit", label: "Sample audit", icon: ScanSearch },
+  { href: "/agents", label: "Agents", icon: Bot },
+  { href: "/traces", label: "Traces", icon: Footprints },
+  { href: "/monitoring", label: "Monitoring", icon: Activity },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
@@ -25,7 +27,7 @@ export function Sidebar() {
       </div>
       <div className="p-4">
         <Link href="/new" className="flex items-center justify-center gap-2 rounded-lg accent-bg px-3 py-2 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90">
-          <Plus className="size-4" /> New audit
+          <Plus className="size-4" /> New Evaluation
         </Link>
       </div>
       <nav className="flex-1 space-y-1 px-4">
@@ -41,9 +43,9 @@ export function Sidebar() {
         })}
       </nav>
       <div className="m-4 rounded-xl border bg-gradient-to-b from-accent/10 to-transparent p-4">
-        <div className="flex items-center gap-2 text-sm font-medium"><ShieldCheck className="size-4 text-accent" /> Audit an agent</div>
-        <p className="mt-1 text-xs text-muted-foreground">Point Certo at any OpenAI-compatible endpoint — 36 probes, judged by Fireworks AI on AMD.</p>
-        <Link href="/new" className="mt-3 block rounded-md accent-bg px-3 py-1.5 text-center text-xs font-medium text-white transition-opacity hover:opacity-90">New audit</Link>
+        <div className="flex items-center gap-2 text-sm font-medium"><ShieldCheck className="size-4 text-accent" /> Free plan</div>
+        <p className="mt-1 text-xs text-muted-foreground">3 agents · upgrade for monitoring & auto-fix.</p>
+        <Link href="/settings" className="mt-3 block rounded-md border bg-background px-3 py-1.5 text-center text-xs font-medium transition-colors hover:bg-secondary">Upgrade plan</Link>
       </div>
     </aside>
   );

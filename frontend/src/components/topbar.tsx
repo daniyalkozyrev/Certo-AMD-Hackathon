@@ -2,24 +2,41 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bell, Check, LogOut, ScanSearch } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Bell, Check, LogOut, ScanSearch, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useAuth } from "@/components/auth-provider";
 
 export function Topbar() {
+  const router = useRouter();
   const { user, logout } = useAuth();
+  const [query, setQuery] = useState("");
   const [bellOpen, setBellOpen] = useState(false);
   const [acctOpen, setAcctOpen] = useState(false);
 
   const initials = (user?.email ?? "?").slice(0, 2).toUpperCase();
 
+  function onSearch(e: React.FormEvent) {
+    e.preventDefault();
+    const q = query.trim();
+    router.push(q ? `/agents?q=${encodeURIComponent(q)}` : "/agents");
+  }
+
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between gap-4 border-b glass px-5 lg:px-8">
-      <div className="flex-1" />
+      <form onSubmit={onSearch} className="flex flex-1 items-center gap-2 rounded-lg border bg-background px-3 py-2 text-sm text-muted-foreground sm:max-w-xs">
+        <Search className="size-4" />
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search agents…"
+          className="w-full bg-transparent text-foreground outline-none placeholder:text-muted-foreground"
+        />
+      </form>
       <div className="flex items-center gap-2">
         <Link href="/new" className="hidden sm:block">
-          <Button size="sm" variant="accent"><ScanSearch /> Run audit</Button>
+          <Button size="sm" variant="accent"><ScanSearch /> Run evaluation</Button>
         </Link>
         <ThemeToggle />
         <div className="relative">
