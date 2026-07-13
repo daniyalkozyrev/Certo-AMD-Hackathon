@@ -5,104 +5,129 @@
 <title>Certo — cover</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { background: #05070d; }
-  /* 16:9 — screenshot this box at 1920×1080 (it is exactly that size). */
+  html, body { background: #0a0e1a; }
+  :root {
+    --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+    --sans: -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+    --ink: #eaf0fb; --muted: #9aa6c2; --blue: #3b82f6; --green: #22c55e; --amber: #f5a524;
+  }
+  /* Exactly 1920×1080 — screenshot this box. */
   .cover {
     position: relative; width: 1920px; height: 1080px; overflow: hidden;
     background:
-      radial-gradient(1200px 700px at 78% -10%, rgba(120,90,255,.28), transparent 60%),
-      radial-gradient(900px 600px at 8% 108%, rgba(0,200,180,.20), transparent 55%),
-      linear-gradient(160deg, #05070d 0%, #0a0e1a 55%, #070a12 100%);
-    color: #eef1f8; font-family: -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
-    -webkit-font-smoothing: antialiased;
+      radial-gradient(1100px 640px at 84% -8%, rgba(59,130,246,.16), transparent 60%),
+      radial-gradient(900px 560px at 4% 110%, rgba(16,200,180,.10), transparent 55%),
+      linear-gradient(155deg, #0a0e1a 0%, #0c1120 55%, #090d18 100%);
+    color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased;
   }
-  .grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(1400px 900px at 50% 30%, #000 30%, transparent 75%);
-  }
-  .pad { position: absolute; inset: 0; padding: 96px 110px; display: flex; flex-direction: column; }
-  .top { display: flex; align-items: center; justify-content: space-between; }
-  .brand { display: flex; align-items: center; gap: 18px; }
-  .mark {
-    width: 62px; height: 62px; border-radius: 16px;
-    background: linear-gradient(135deg, #8b7bff, #10c8b4);
-    display: grid; place-items: center; font-size: 34px; font-weight: 800; color: #05070d;
-    box-shadow: 0 8px 40px rgba(139,123,255,.45);
-  }
-  .brand h2 { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
-  .track {
-    font-size: 20px; color: #aeb6cc; border: 1px solid rgba(255,255,255,.14);
-    padding: 12px 22px; border-radius: 999px; background: rgba(255,255,255,.04);
-  }
-  .track b { color: #cbb9ff; font-weight: 600; }
-  .mid { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1180px; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
-    font-size: 21px; color: #9be7dd; letter-spacing: .01em; margin-bottom: 30px;
-    border: 1px solid rgba(16,200,180,.35); background: rgba(16,200,180,.08);
-    padding: 10px 20px; border-radius: 999px;
-  }
-  h1 { font-size: 96px; line-height: 1.02; letter-spacing: -.035em; font-weight: 780; }
-  h1 .g { background: linear-gradient(120deg, #a99bff 0%, #10c8b4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .sub { margin-top: 34px; font-size: 30px; line-height: 1.5; color: #c3cbe0; max-width: 1040px; }
-  .pipe { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; }
-  .chip {
-    font-size: 21px; color: #dfe4f2; padding: 13px 22px; border-radius: 12px;
+  .grid { position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(1500px 900px at 40% 35%, #000 30%, transparent 78%); }
+  .pad { position: absolute; inset: 0; padding: 84px 96px; display: flex; flex-direction: column; }
+
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .dia { width: 44px; height: 44px; transform: rotate(45deg); border-radius: 10px;
+    background: linear-gradient(135deg, #8b7bff, #10c8b4); box-shadow: 0 6px 26px rgba(139,123,255,.4); }
+  .brand h2 { font-size: 30px; font-weight: 700; letter-spacing: -.01em; }
+
+  .main { flex: 1; display: grid; grid-template-columns: 1.02fr .98fr; gap: 64px; align-items: center; }
+
+  /* LEFT */
+  .eyebrow { font-family: var(--mono); font-size: 19px; color: #9be7dd; letter-spacing: .02em;
+    display: inline-flex; gap: 10px; align-items: center; }
+  h1 { font-size: 92px; line-height: .98; letter-spacing: -.035em; font-weight: 720; margin: 26px 0 0; }
+  h1 .g { background: linear-gradient(120deg, #a99bff, #10c8b4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .verbs { font-family: var(--mono); font-size: 26px; color: var(--muted); margin-top: 30px; letter-spacing: .01em; }
+  .verbs b { color: var(--ink); font-weight: 600; }
+  .rule { width: 380px; height: 3px; margin: 34px 0 28px;
+    background: linear-gradient(90deg, var(--blue), transparent); border-radius: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; max-width: 720px; }
+  .chip { font-family: var(--mono); font-size: 17px; color: #cfd8ee;
     border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.045);
-  }
+    padding: 9px 15px; border-radius: 10px; }
   .chip b { color: #fff; }
-  .bottom { display: flex; align-items: center; justify-content: space-between; }
-  .stats { display: flex; gap: 56px; }
-  .stat .n { font-size: 52px; font-weight: 760; letter-spacing: -.03em; }
-  .stat .n .u { font-size: 26px; color: #9aa3bd; font-weight: 600; }
-  .stat .l { font-size: 19px; color: #9aa3bd; margin-top: 4px; }
-  .fw {
-    display: flex; align-items: center; gap: 14px; font-size: 22px; color: #c3cbe0;
-    border: 1px solid rgba(255,255,255,.12); padding: 16px 26px; border-radius: 14px;
-    background: rgba(255,255,255,.04);
-  }
-  .fw .dot { width: 12px; height: 12px; border-radius: 50%; background: #ff5a3c; box-shadow: 0 0 18px #ff5a3c; }
-  .fw b { color: #fff; }
+
+  /* RIGHT — audit report card */
+  .card { background: #f6f8fc; color: #0b1220; border-radius: 26px; padding: 40px 42px;
+    box-shadow: 0 40px 90px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06);
+    font-family: var(--mono); }
+  .card .top { display: flex; align-items: center; justify-content: space-between; }
+  .card .lbl { font-size: 20px; color: #64748b; letter-spacing: .04em; }
+  .pill { font-family: var(--sans); font-weight: 700; font-size: 18px; color: #7a4a00;
+    background: var(--amber); padding: 6px 16px; border-radius: 999px; }
+  .agent { font-size: 40px; font-weight: 700; margin-top: 14px; letter-spacing: -.01em; }
+  .score { display: flex; align-items: flex-end; gap: 22px; margin-top: 14px; }
+  .score .n { font-size: 96px; font-weight: 800; line-height: .9; letter-spacing: -.04em; }
+  .score .meta { padding-bottom: 10px; }
+  .score .meta .t { font-size: 22px; color: #64748b; }
+  .score .meta .p { font-size: 24px; color: #16a34a; font-weight: 700; margin-top: 4px; }
+  .bars { margin-top: 30px; display: flex; flex-direction: column; gap: 18px; }
+  .bar { display: flex; align-items: center; gap: 18px; font-size: 22px; }
+  .bar .k { width: 150px; color: #334155; }
+  .bar .track { flex: 1; height: 12px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--blue); border-radius: 999px; }
+  .bar .v { width: 44px; text-align: right; font-weight: 700; }
+  .find { margin-top: 30px; padding: 16px 18px; border-radius: 14px; background: #fdecec;
+    border: 1px solid #f7c9c9; display: flex; align-items: center; justify-content: space-between; }
+  .find .l { font-size: 19px; color: #b42318; font-weight: 600; }
+  .find .fix { font-size: 18px; color: var(--blue); font-weight: 700; }
+  .card .foot { margin-top: 26px; font-size: 17px; color: #64748b; }
+  .card .foot b { color: #0b1220; }
+
+  .bottom { display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--mono); font-size: 19px; color: var(--muted); }
+  .bottom b { color: #cbd5f0; }
+  .amd { display: inline-flex; align-items: center; gap: 10px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #ff5a3c; box-shadow: 0 0 14px #ff5a3c; }
 </style>
 </head>
 <body>
   <div class="cover">
     <div class="grid"></div>
     <div class="pad">
-      <div class="top">
-        <div class="brand">
-          <div class="mark">C</div>
-          <h2>Certo</h2>
-        </div>
-        <div class="track">AMD Developer Hackathon: ACT II · <b>Unicorn Track</b></div>
-      </div>
+      <div class="brand"><span class="dia"></span><h2>Certo</h2></div>
 
-      <div class="mid">
-        <div class="eyebrow">◆ Benchmark · Red-team · Certify · Optimize</div>
-        <h1>The trust &amp; security<br>layer for <span class="g">AI agents.</span></h1>
-        <p class="sub">
-          Connect an agent, run a structured security &amp; reliability audit, and get an
-          explainable <b style="color:#fff">Trust Score</b> with evidence, prioritized findings and fixes.
-        </p>
-        <div class="pipe">
-          <div class="chip">36 adversarial + capability <b>probes</b></div>
-          <div class="chip"><b>2 Fireworks-AI judges</b> on AMD · ensemble</div>
-          <div class="chip">Deterministic leak / PII / XSS checks</div>
-          <div class="chip">OWASP · NIST · EU AI Act · ISO 42001</div>
+      <div class="main">
+        <!-- LEFT -->
+        <div>
+          <span class="eyebrow">◆ Benchmark · Red-team · Certify · Optimize</span>
+          <h1>The trust standard<br>for <span class="g">AI agents.</span></h1>
+          <p class="verbs">The <b>trust, security &amp; optimization layer</b> for AI agents —<br>
+            audit them <b>before</b> they touch real users, data or money.</p>
+          <div class="rule"></div>
+          <div class="chips">
+            <span class="chip"><b>36</b> security &amp; reliability probes</span>
+            <span class="chip"><b>Fireworks-AI</b> judge ensemble on AMD</span>
+            <span class="chip">OWASP · NIST · EU AI Act · ISO 42001</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: audit report card -->
+        <div class="card">
+          <div class="top"><span class="lbl">AUDIT REPORT</span><span class="pill">Gold</span></div>
+          <div class="agent">Helpdesk Concierge</div>
+          <div class="score">
+            <span class="n">88</span>
+            <span class="meta"><div class="t">Trust Score</div><div class="p">↑ 99 potential</div></span>
+          </div>
+          <div class="bars">
+            <div class="bar"><span class="k">Security</span><span class="track"><span class="fill" style="width:86%"></span></span><span class="v">86</span></div>
+            <div class="bar"><span class="k">Tool&nbsp;Safety</span><span class="track"><span class="fill" style="width:90%"></span></span><span class="v">90</span></div>
+            <div class="bar"><span class="k">Accuracy</span><span class="track"><span class="fill" style="width:84%"></span></span><span class="v">84</span></div>
+          </div>
+          <div class="find">
+            <span class="l">⚠ Critical · Prompt injection → data exposure</span>
+            <span class="fix">Generate fix →</span>
+          </div>
+          <div class="foot">Judged by <b>2 Fireworks models on AMD</b> + deterministic checks · evidence per finding</div>
         </div>
       </div>
 
       <div class="bottom">
-        <div class="stats">
-          <div class="stat"><div class="n">36</div><div class="l">probes · 6 categories</div></div>
-          <div class="stat"><div class="n">2×<span class="u"> LLM</span></div><div class="l">judge ensemble</div></div>
-          <div class="stat"><div class="n">0–100</div><div class="l">Trust → Potential</div></div>
-        </div>
-        <div class="fw"><span class="dot"></span> Judged by <b>Fireworks&nbsp;AI</b> on <b>AMD</b></div>
+        <span>Built for the <b>AMD Developer Hackathon: ACT II</b> · Unicorn Track</span>
+        <span class="amd"><span class="dot"></span>Powered by <b>&nbsp;Fireworks AI on AMD</b>&nbsp; · certo-amd-hackathon.vercel.app</span>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
-<!-- cover: docs/cover.png -->
+![Certo — the trust, security & optimization layer for AI agents](docs/cover.png)
+
 # Certo — The Trust, Security & Optimization Layer for AI Agents
 
 **Certo benchmarks, red-teams, scores, certifies and helps improve production AI agents.**
