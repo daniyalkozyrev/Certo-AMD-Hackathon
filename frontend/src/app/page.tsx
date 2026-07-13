@@ -49,7 +49,7 @@ export default function Landing() {
         <div className="container relative pb-16 pt-20 md:pt-28">
           <motion.div {...fadeUp} className="mx-auto max-w-3xl text-center">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-              <Badge variant="accent" className="mb-6"><Sparkles className="size-3" /> The benchmark, trust & optimization layer for AI agents</Badge>
+              <Badge variant="accent" className="mb-6"><Sparkles className="size-3" /> The trust, security & optimization layer for AI agents</Badge>
             </motion.div>
             <h1 className="text-balance text-5xl font-semibold tracking-tight md:text-7xl">
               Ship AI agents <span className="accent-grad">you can trust.</span>

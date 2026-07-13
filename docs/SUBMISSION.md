@@ -42,12 +42,14 @@ Fireworks AI · Python · FastAPI · Next.js · React · TypeScript · Docker
 
 ## Additional Information  (recommended judge flow)
 ```
-Certo is submitted to the Unicorn Track. Recommended judge flow: open the live demo, go to /audit
-(no login), review the Sample Audit of the "Helpdesk Concierge" agent, inspect the Trust Score and
-category breakdown, open a critical finding (e.g. prompt-injection / data leakage) to see the
-evidence and the two Fireworks judges' verdicts + disagreement, click "Generate fix" to have the
-third Fireworks model produce a concrete fix + system-prompt patch, then note the Potential Score.
-To audit any agent live, click "New audit" (the /new form) and point Certo at an OpenAI-compatible endpoint.
+Certo is submitted to the Unicorn Track. No login or credentials are required: on the landing page
+click "Try the live demo" — one click signs you in as a shared "demo" account and lands you in the
+dashboard, which already contains a completed sample audit of a "Helpdesk Concierge" agent. Open it
+to inspect the Trust Score and category breakdown, expand a critical finding (e.g. prompt-injection /
+data leakage) to see the evidence and the two Fireworks judges' verdicts + disagreement, click
+"Generate fix" to have the third Fireworks model produce a concrete fix + system-prompt patch, then
+note the Potential Score. There is also a fully public sample audit at /audit (no login at all).
+To audit any agent live, click "New audit" and point Certo at any OpenAI-compatible endpoint.
 
 Fireworks AI is integrated into the core pipeline as three open models on AMD infrastructure: two
 judges (gpt-oss-120b and glm-5p2) evaluate each probe against a fixed rubric and return structured

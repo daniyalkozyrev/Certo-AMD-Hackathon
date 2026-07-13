@@ -52,6 +52,36 @@ async def auth_config() -> AuthConfigOut:
     return AuthConfigOut(google_enabled=settings.google_enabled, email_mode=settings.email_mode)
 
 
+async def _ensure_demo_audit(session: SessionDep, owner_id) -> None:
+    """Seed the demo account with one completed sample audit so the dashboard is alive
+    (TrustScore + a clickable full report) the moment a reviewer enters — idempotent, and
+    survives the ephemeral SQLite DB because it re-seeds on demand."""
+    import json
+    from pathlib import Path
+
+    from app.models.audit import Audit, AuditStatus
+
+    existing = await session.scalar(select(Audit).where(Audit.owner_id == owner_id).limit(1))
+    if existing is not None:
+        return
+    fixture = (
+        Path(__file__).resolve().parent.parent.parent
+        / "services" / "audit" / "sample_report.json"
+    )
+    if not fixture.exists():
+        return
+    report = json.loads(fixture.read_text(encoding="utf-8"))
+    session.add(Audit(
+        owner_id=owner_id,
+        name="Helpdesk Concierge (sample)",
+        agent_model=(report.get("meta") or {}).get("agent_model"),
+        status=AuditStatus.COMPLETED,
+        trust_score=report.get("trust_score"),
+        potential_score=report.get("potential_score"),
+        report=report,
+    ))
+
+
 @router.post("/demo", response_model=TokenOut)
 async def demo_login(session: SessionDep) -> TokenOut:
     """One-click guest login — no credentials. Issues a token for a shared, pre-verified
@@ -60,6 +90,8 @@ async def demo_login(session: SessionDep) -> TokenOut:
     user = await _get_or_create_user(session, "demo@certo.demo", "demo")
     user.name = "demo"
     user.email_verified = True
+    await session.flush()
+    await _ensure_demo_audit(session, user.id)
     await session.commit()
     await session.refresh(user)
     token = create_access_token(user.id, user.email)
