@@ -15,6 +15,7 @@ dependencies = [
     # Database (async)
     "sqlalchemy[asyncio]>=2.0.36",
     "asyncpg>=0.30",
+    "aiosqlite>=0.20",       # async SQLite driver (used for the zero-dependency deploy)
     "alembic>=1.14",
     "pgvector>=0.3.6",
     # Background jobs
