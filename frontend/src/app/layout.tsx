@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: "Certo — Trust & security audits for AI agents",
   description:
-    "Connect an AI agent, run an automated security & trust audit, get an explainable Trust Score, fixes and a shareable certificate. The benchmark, trust & optimization layer for AI agents.",
+    "The trust, security & optimization layer for AI agents. Connect an AI agent, run an automated security & reliability audit, and get an explainable Trust Score, evidence, fixes and a shareable certificate.",
   openGraph: {
     title: "Certo — Ship AI agents you can trust",
     description: "Automated security & reliability audits, an explainable Trust Score, and a shareable certificate for AI agents.",
