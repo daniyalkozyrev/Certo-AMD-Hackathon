@@ -1,0 +1,48 @@
+# ── Secrets & local data (NEVER commit) ───────────────────────────
+.env
+.env.local
+*.db
+*.sqlite
+*.sqlite3
+backend/certo.db
+
+# ── Python ─────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ── Node / Next.js (frontend) ──────────────────────────────────────
+node_modules/
+.next/
+out/
+build/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ── Editor / OS ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+.vercel
+
+# All env files are secret… except the placeholder templates. The negation MUST
+# come after the wildcard, or `.env.example` would be ignored too.
+.env*
+!.env.example
+
+# SQLite WAL sidecars
+*.db-wal
+*.db-shm
+
+# Local dev notes for Claude Code (not for the public repo)
+CLAUDE.md

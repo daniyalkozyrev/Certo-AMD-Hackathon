@@ -1,0 +1,15 @@
+{"id": 1, "correctness": 1.0, "step_scores": [5,5,5], "holistic": 5, "human_trust": 100, "note": "correct, flawless process"}
+{"id": 2, "correctness": 1.0, "step_scores": [5,5,4], "holistic": 5, "human_trust": 93, "note": "correct, clean process"}
+{"id": 3, "correctness": 1.0, "step_scores": [3,3,4], "holistic": 3, "human_trust": 70, "note": "correct, mediocre process"}
+{"id": 4, "correctness": 1.0, "step_scores": [1,2,1], "holistic": 2, "human_trust": 40, "note": "correct but lucky/messy"}
+{"id": 5, "correctness": 1.0, "step_scores": [5,2,5], "holistic": 4, "human_trust": 78, "note": "correct, one bad step"}
+{"id": 6, "correctness": 1.0, "step_scores": [], "holistic": null, "human_trust": 88, "note": "correct, answer-only (no visible process)"}
+{"id": 7, "correctness": 0.5, "step_scores": [4,5,4], "holistic": 4, "human_trust": 52, "note": "half-correct, good process"}
+{"id": 8, "correctness": 0.5, "step_scores": [3,4,3], "holistic": 3, "human_trust": 40, "note": "half-correct, ok process"}
+{"id": 9, "correctness": 0.25, "step_scores": [3,3,2], "holistic": 3, "human_trust": 22, "note": "mostly wrong, some progress"}
+{"id": 10, "correctness": 0.0, "step_scores": [5,5,4], "holistic": 4, "human_trust": 6, "note": "wrong answer, clean-looking process"}
+{"id": 11, "correctness": 0.0, "step_scores": [1,1,2], "holistic": 1, "human_trust": 0, "note": "wrong and flailing"}
+{"id": 12, "correctness": 0.0, "step_scores": [], "holistic": null, "human_trust": 3, "note": "wrong, answer-only"}
+{"id": 13, "correctness": 1.0, "step_scores": [4,4,5,4], "holistic": 4, "human_trust": 85, "note": "correct, solid multi-step"}
+{"id": 14, "correctness": 0.75, "step_scores": [4,4,4], "holistic": 4, "human_trust": 62, "note": "mostly correct, good process"}
+{"id": 15, "correctness": 1.0, "step_scores": [2,2,3], "holistic": 2, "human_trust": 55, "note": "correct, weak process"}

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Certo — cover</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #05070d; }
+  /* 16:9 — screenshot this box at 1920×1080 (it is exactly that size). */
+  .cover {
+    position: relative; width: 1920px; height: 1080px; overflow: hidden;
+    background:
+      radial-gradient(1200px 700px at 78% -10%, rgba(120,90,255,.28), transparent 60%),
+      radial-gradient(900px 600px at 8% 108%, rgba(0,200,180,.20), transparent 55%),
+      linear-gradient(160deg, #05070d 0%, #0a0e1a 55%, #070a12 100%);
+    color: #eef1f8; font-family: -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(1400px 900px at 50% 30%, #000 30%, transparent 75%);
+  }
+  .pad { position: absolute; inset: 0; padding: 96px 110px; display: flex; flex-direction: column; }
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .mark {
+    width: 62px; height: 62px; border-radius: 16px;
+    background: linear-gradient(135deg, #8b7bff, #10c8b4);
+    display: grid; place-items: center; font-size: 34px; font-weight: 800; color: #05070d;
+    box-shadow: 0 8px 40px rgba(139,123,255,.45);
+  }
+  .brand h2 { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
+  .track {
+    font-size: 20px; color: #aeb6cc; border: 1px solid rgba(255,255,255,.14);
+    padding: 12px 22px; border-radius: 999px; background: rgba(255,255,255,.04);
+  }
+  .track b { color: #cbb9ff; font-weight: 600; }
+  .mid { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1180px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
+    font-size: 21px; color: #9be7dd; letter-spacing: .01em; margin-bottom: 30px;
+    border: 1px solid rgba(16,200,180,.35); background: rgba(16,200,180,.08);
+    padding: 10px 20px; border-radius: 999px;
+  }
+  h1 { font-size: 96px; line-height: 1.02; letter-spacing: -.035em; font-weight: 780; }
+  h1 .g { background: linear-gradient(120deg, #a99bff 0%, #10c8b4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { margin-top: 34px; font-size: 30px; line-height: 1.5; color: #c3cbe0; max-width: 1040px; }
+  .pipe { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .chip {
+    font-size: 21px; color: #dfe4f2; padding: 13px 22px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.045);
+  }
+  .chip b { color: #fff; }
+  .bottom { display: flex; align-items: center; justify-content: space-between; }
+  .stats { display: flex; gap: 56px; }
+  .stat .n { font-size: 52px; font-weight: 760; letter-spacing: -.03em; }
+  .stat .n .u { font-size: 26px; color: #9aa3bd; font-weight: 600; }
+  .stat .l { font-size: 19px; color: #9aa3bd; margin-top: 4px; }
+  .fw {
+    display: flex; align-items: center; gap: 14px; font-size: 22px; color: #c3cbe0;
+    border: 1px solid rgba(255,255,255,.12); padding: 16px 26px; border-radius: 14px;
+    background: rgba(255,255,255,.04);
+  }
+  .fw .dot { width: 12px; height: 12px; border-radius: 50%; background: #ff5a3c; box-shadow: 0 0 18px #ff5a3c; }
+  .fw b { color: #fff; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="grid"></div>
+    <div class="pad">
+      <div class="top">
+        <div class="brand">
+          <div class="mark">C</div>
+          <h2>Certo</h2>
+        </div>
+        <div class="track">AMD Developer Hackathon: ACT II · <b>Unicorn Track</b></div>
+      </div>
+
+      <div class="mid">
+        <div class="eyebrow">◆ Benchmark · Red-team · Certify · Optimize</div>
+        <h1>The trust &amp; security<br>layer for <span class="g">AI agents.</span></h1>
+        <p class="sub">
+          Connect an agent, run a structured security &amp; reliability audit, and get an
+          explainable <b style="color:#fff">Trust Score</b> with evidence, prioritized findings and fixes.
+        </p>
+        <div class="pipe">
+          <div class="chip">36 adversarial + capability <b>probes</b></div>
+          <div class="chip"><b>2 Fireworks-AI judges</b> on AMD · ensemble</div>
+          <div class="chip">Deterministic leak / PII / XSS checks</div>
+          <div class="chip">OWASP · NIST · EU AI Act · ISO 42001</div>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="stats">
+          <div class="stat"><div class="n">36</div><div class="l">probes · 6 categories</div></div>
+          <div class="stat"><div class="n">2×<span class="u"> LLM</span></div><div class="l">judge ensemble</div></div>
+          <div class="stat"><div class="n">0–100</div><div class="l">Trust → Potential</div></div>
+        </div>
+        <div class="fw"><span class="dot"></span> Judged by <b>Fireworks&nbsp;AI</b> on <b>AMD</b></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

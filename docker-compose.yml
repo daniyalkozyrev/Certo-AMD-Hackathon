@@ -1,0 +1,38 @@
+# Certo — one command to run the whole stack: `docker compose up --build`.
+# Backend on SQLite + in-process worker (no Postgres/Redis needed). Set your
+# Fireworks key in backend/.env (copy backend/.env.example) to enable the live
+# model judges; without it the audit runs in deterministic demo mode.
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: sqlite+aiosqlite:////data/certo.db
+      RUN_WORKER_INLINE: "true"
+      PORT: "8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - certo-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health',timeout=5).status==200 else 1)"]
+      interval: 15s
+      timeout: 6s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  certo-data:
