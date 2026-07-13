@@ -283,7 +283,10 @@ export default function Landing() {
         <div className="container flex flex-col items-center justify-between gap-4 py-10 text-sm text-muted-foreground md:flex-row">
           <Logo />
           <p>© 2026 Certo. The trust layer for AI agents.</p>
-          <div className="flex gap-6"><a href="#" className="hover:text-foreground">Privacy</a><a href="#" className="hover:text-foreground">Docs</a></div>
+          <div className="flex gap-6">
+            <a href="https://github.com/daniyalkozyrev/Certo-AMD-Hackathon" target="_blank" rel="noreferrer" className="hover:text-foreground">GitHub</a>
+            <Link href="/audit" className="hover:text-foreground">Sample audit</Link>
+          </div>
         </div>
       </footer>
     </div>

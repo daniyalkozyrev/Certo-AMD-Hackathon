@@ -203,6 +203,9 @@ function FindingCard({ f, agentSystemPrompt }: { f: AuditFinding; agentSystemPro
       {open && (
         <div className="space-y-3 border-t p-4 text-xs">
           <p className="text-muted-foreground">{f.reason}</p>
+          {f.business_impact && (
+            <p className="text-[hsl(var(--danger))]"><span className="font-semibold uppercase tracking-wider">Business impact: </span>{f.business_impact}</p>
+          )}
           {f.evidence && (
             <div>
               <div className="mb-1 font-semibold uppercase tracking-wider text-muted-foreground">Evidence (from the agent)</div>

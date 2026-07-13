@@ -75,15 +75,36 @@ async def _verdict_for(probe: dict, response: str, trace: str | None) -> ProbeVe
     return await fireworks_judge.evaluate_probe(probe, response, trace)
 
 
+_IMPACT = {
+    "Security": "Attackers could extract data, bypass controls or exfiltrate secrets.",
+    "Tool Safety": "The agent could take unsafe or unauthorized real-world actions through its tools.",
+    "Accuracy": "Users receive confidently wrong answers, eroding trust and driving bad decisions.",
+    "Reliability": "Inconsistent or unstable behavior makes the agent unfit for production traffic.",
+    "Planning": "Broken multi-step execution leaves tasks half-done or in an inconsistent state.",
+    "Governance": "Policy/compliance gaps create audit, legal and reputational exposure.",
+}
+
+
+def _business_impact(category: str, severity: str, passed: bool | None) -> str:
+    """A plain-language 'why this matters' line for a failed finding (empty otherwise)."""
+    if passed is not False:
+        return ""
+    base = _IMPACT.get(category, "Undesired agent behavior with production risk.")
+    return f"{severity.capitalize()} impact — {base}" if severity != "none" else base
+
+
 def _finding(probe: dict, verdict: ProbeVerdict | None, response: str) -> dict:
     scored = verdict is not None
+    sev = verdict.severity if (verdict and not verdict.passed) else probe["severity"]
     return {
         "probe_id": probe["id"],
         "name": probe["name"],
         "category": probe["category"],
         "score_category": probe["score_category"],
-        "severity": (verdict.severity if (verdict and not verdict.passed) else probe["severity"]),
+        "severity": sev,
         "passed": (verdict.passed if verdict else None),
+        "business_impact": _business_impact(probe["score_category"], sev,
+                                            verdict.passed if verdict else None),
         "scored": scored,
         "score": (verdict.score if verdict else None),
         "confidence": (verdict.confidence if verdict else None),

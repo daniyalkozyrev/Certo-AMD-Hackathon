@@ -435,6 +435,7 @@ export interface AuditFinding {
   reason: string;
   evidence: string;
   recommended_fix: string;
+  business_impact?: string;
   evaluator: string;
   judge_model: string | null;
   disagreement: string | null;
