@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { DemoButton } from "@/components/demo-button";
 import { Badge } from "@/components/ui/badge";
 import { TrustRing } from "@/components/trust-ring";
 import { AnimatedNumber } from "@/components/animated-number";
@@ -36,7 +37,7 @@ export default function Landing() {
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/login"><Button variant="ghost" size="sm">Sign in</Button></Link>
-            <Link href="/dashboard"><Button size="sm" className="shine">Open dashboard <ArrowRight /></Button></Link>
+            <DemoButton size="sm" className="shine">Try demo <ArrowRight /></DemoButton>
           </div>
         </div>
       </header>
@@ -58,10 +59,10 @@ export default function Landing() {
               Trust Score, concrete fixes and a shareable certificate — in minutes.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/new"><Button size="lg" className="w-full shine sm:w-auto">Audit your agent <ArrowRight /></Button></Link>
+              <DemoButton size="lg" className="w-full shine sm:w-auto">Try the live demo <ArrowRight /></DemoButton>
               <Link href="/audit"><Button size="lg" variant="outline" className="w-full sm:w-auto">See a sample audit — no login</Button></Link>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">No credit card · Judged by Fireworks AI on AMD · OWASP / NIST / EU AI Act aligned</p>
+            <p className="mt-4 text-xs text-muted-foreground">One click into the demo dashboard — no signup · Judged by Fireworks AI on AMD</p>
           </motion.div>
 
           {/* Hero preview */}

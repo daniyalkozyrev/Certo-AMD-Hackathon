@@ -52,6 +52,20 @@ async def auth_config() -> AuthConfigOut:
     return AuthConfigOut(google_enabled=settings.google_enabled, email_mode=settings.email_mode)
 
 
+@router.post("/demo", response_model=TokenOut)
+async def demo_login(session: SessionDep) -> TokenOut:
+    """One-click guest login — no credentials. Issues a token for a shared, pre-verified
+    'demo' account so a reviewer lands straight in the dashboard. The demo user only sees
+    its own + public resources (standard ownership scoping)."""
+    user = await _get_or_create_user(session, "demo@certo.demo", "demo")
+    user.name = "demo"
+    user.email_verified = True
+    await session.commit()
+    await session.refresh(user)
+    token = create_access_token(user.id, user.email)
+    return TokenOut(access_token=token, user=UserRead.model_validate(user))
+
+
 async def _issue_verification_code(session: SessionDep, email: str) -> str:
     """Create + email a fresh one-time code. Returns it (surfaced to the API only
     in local console mode)."""

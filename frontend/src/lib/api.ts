@@ -224,6 +224,12 @@ export function verifyLoginCode(email: string, code: string) {
 export function getMe() {
   return request<User>(`/auth/me`);
 }
+/** One-click guest login as the shared "demo" account (no credentials). */
+export function demoLogin() {
+  return request<{ access_token: string; token_type: string; user: User }>(`/auth/demo`, {
+    method: "POST",
+  });
+}
 export function googleAuthorizeUrl(): string {
   return `${API_BASE}${PREFIX}/auth/google/authorize`;
 }
