@@ -28,23 +28,23 @@ async def seed() -> None:
             config={},
         )
         agentic_agent = Agent(
-            name="Agentic Coder (Claude)",
+            name="Agentic Coder",
             description=(
                 "Works inside a LIVE sandbox over multiple steps: think -> run "
-                "code -> observe -> repeat. Uses Claude when an Anthropic key is "
-                "configured, otherwise an offline mock."
+                "code -> observe -> repeat. Uses the configured model, otherwise "
+                "an offline mock."
             ),
             agent_type=AgentType.AGENTIC,
-            config={"provider": "anthropic", "max_steps": 5},
+            config={"provider": "openai", "max_steps": 5},
         )
         multi_agent = Agent(
-            name="Multi-Agent Team (Claude)",
+            name="Multi-Agent Team",
             description=(
                 "Planner -> Worker(loop in sandbox) -> Reviewer. The shape real "
                 "multi-agent systems use for hard tasks. Each step is judged."
             ),
             agent_type=AgentType.MULTI_AGENT,
-            config={"provider": "anthropic", "max_steps": 4},
+            config={"provider": "openai", "max_steps": 4},
         )
 
         # ── Benchmark 1: quick sanity (one-shot friendly) ────────────────

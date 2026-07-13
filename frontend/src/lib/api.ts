@@ -20,7 +20,7 @@ export interface AgentConfig {
   api_key?: string | null;
   model?: string | null;
   system_prompt?: string | null;
-  provider?: string | null; // "anthropic" | "openai"
+  provider?: string | null; // e.g. "openai"
   max_steps?: number | null;
 }
 

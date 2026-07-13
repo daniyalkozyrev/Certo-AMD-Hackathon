@@ -251,7 +251,7 @@ export default function Landing() {
         </motion.div>
         <div className="mx-auto mt-10 max-w-2xl divide-y rounded-2xl border bg-card">
           {[
-            { q: "Do you train your own model to score agents?", a: "No. Certo combines deterministic rule-based checks, ground-truth eval, and an ensemble of frontier LLM judges (GPT-5 / Claude / Gemini) with disagreement detection — so the score is objective and explainable." },
+            { q: "Do you train your own model to score agents?", a: "No. Certo combines deterministic rule-based checks, ground-truth eval, and an ensemble of open LLM judges served on Fireworks AI (AMD) with disagreement detection — so the score is objective and explainable." },
             { q: "How do you connect to my agent?", a: "Via API endpoint, uploaded logs, or a test environment. We support OpenAI Agents SDK, LangGraph, CrewAI, PydanticAI and custom APIs." },
             { q: "Is my data safe?", a: "Yes. We minimize stored data, isolate each customer, encrypt in transit and at rest, and offer on-prem / VPC deployment for regulated teams." },
             { q: "What standards do you map to?", a: "OWASP LLM Top 10, NIST AI RMF, EU AI Act and ISO/IEC 42001 — so passing Certo helps you pass procurement and the regulator." },

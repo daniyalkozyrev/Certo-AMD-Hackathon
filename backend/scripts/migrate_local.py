@@ -41,19 +41,19 @@ async def main() -> None:
     async with SessionFactory() as session:
         names = {n for (n,) in (await session.execute(select(Agent.name))).all()}
         to_add: list = []
-        if "Agentic Coder (Claude)" not in names:
+        if "Agentic Coder" not in names:
             to_add.append(Agent(
-                name="Agentic Coder (Claude)",
-                description="Multi-step agent that works inside a live sandbox. Uses Claude when a key is set.",
+                name="Agentic Coder",
+                description="Multi-step agent that works inside a live sandbox. Uses the configured model when a key is set.",
                 agent_type=AgentType.AGENTIC,
-                config={"provider": "anthropic", "max_steps": 5},
+                config={"provider": "openai", "max_steps": 5},
             ))
-        if "Multi-Agent Team (Claude)" not in names:
+        if "Multi-Agent Team" not in names:
             to_add.append(Agent(
-                name="Multi-Agent Team (Claude)",
+                name="Multi-Agent Team",
                 description="Planner -> Worker(loop) -> Reviewer. Each step is judged.",
                 agent_type=AgentType.MULTI_AGENT,
-                config={"provider": "anthropic", "max_steps": 4},
+                config={"provider": "openai", "max_steps": 4},
             ))
 
         bnames = {n for (n,) in (await session.execute(select(Benchmark.name))).all()}

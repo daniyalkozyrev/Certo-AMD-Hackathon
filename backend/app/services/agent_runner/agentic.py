@@ -12,7 +12,7 @@ next — the agent genuinely lives in the environment.
     Planner (drafts a plan) -> Worker (the loop) -> Reviewer (final critique)
 which is the shape real "multi-agent systems" use for hard tasks.
 
-Provider is pluggable: an OpenAI-compatible endpoint or Anthropic Claude. With
+Provider is any OpenAI-compatible endpoint. With
 no usable API key it falls back to a deterministic offline mock so the whole
 pipeline (steps, per-step judging, scoring) is exercisable without spend.
 """
@@ -106,18 +106,11 @@ class AgenticRunner:
 
     # ── Provider resolution ──────────────────────────────────
     def _provider(self) -> str:
-        p = str(self.config.get("provider") or "").lower()
-        if p in ("openai", "anthropic"):
-            return p
-        if self.config.get("base_url"):
-            return "openai"
-        return "anthropic"  # default demo provider (reuses the Anthropic account)
+        return "openai"  # OpenAI-compatible endpoints only
 
     def _api_key(self, provider: str) -> str | None:
         if self.config.get("api_key"):
             return self.config["api_key"]
-        if provider == "anthropic":
-            return settings.judge_anthropic_api_key
         return settings.agent_default_api_key
 
     def _is_mock(self) -> bool:
@@ -226,20 +219,6 @@ class AgenticRunner:
         provider = self._provider()
         key = self._api_key(provider)
         model = self.config.get("model")
-        if provider == "anthropic":
-            from anthropic import AsyncAnthropic
-
-            client = AsyncAnthropic(api_key=key)
-            message = await client.messages.create(
-                model=model or settings.judge_anthropic_model,
-                max_tokens=1024,
-                temperature=0.2,
-                system=system,
-                messages=[{"role": "user", "content": user}],
-            )
-            return "".join(
-                b.text for b in message.content if getattr(b, "type", None) == "text"
-            )
         from openai import AsyncOpenAI
 
         client = AsyncOpenAI(

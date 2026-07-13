@@ -18,20 +18,6 @@ export function OpenAIMark({ className }: MarkProps) {
   );
 }
 
-export function AnthropicMark({ className }: MarkProps) {
-  // Claude-style sunburst asterisk
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden>
-      <g stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
-        {Array.from({ length: 8 }).map((_, i) => {
-          const a = (i * Math.PI) / 4;
-          return <line key={i} x1={12} y1={12} x2={12 + 8 * Math.cos(a)} y2={12 + 8 * Math.sin(a)} />;
-        })}
-      </g>
-    </svg>
-  );
-}
-
 export function GeminiMark({ className }: MarkProps) {
   // 4-point spark star (accurate Gemini glyph shape)
   return (
@@ -74,7 +60,6 @@ export interface Provider { name: string; color: string; Mark: (p: MarkProps) =>
 
 export const PROVIDERS: Provider[] = [
   { name: "OpenAI", color: "#10a37f", Mark: OpenAIMark },
-  { name: "Anthropic", color: "#d97757", Mark: AnthropicMark },
   { name: "Google Gemini", color: "#4285f4", Mark: GeminiMark },
   { name: "Meta Llama", color: "#0866ff", Mark: MetaMark },
   { name: "Mistral", color: "#fa520f", Mark: MistralMark },

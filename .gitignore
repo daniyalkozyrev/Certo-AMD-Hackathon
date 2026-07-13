@@ -44,5 +44,6 @@ Thumbs.db
 *.db-wal
 *.db-shm
 
-# Local dev notes for Claude Code (not for the public repo)
-CLAUDE.md
+# Local dev notes (not for the public repo)
+NOTES.md
+*.local.md

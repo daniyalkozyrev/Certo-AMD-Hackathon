@@ -23,8 +23,7 @@ dependencies = [
     "redis>=5.2",
     # External services
     "e2b-code-interpreter>=1.0.0",
-    "openai>=1.55",          # OpenAI-compatible client -> talks to self-hosted vLLM (Prometheus-2)
-    "anthropic>=0.40",       # official Claude SDK -> temporary judge while Prometheus GPU is down
+    "openai>=1.55",          # OpenAI-compatible client (agents under test + Fireworks judges)
     "httpx>=0.27",
     # Auth / security
     "bcrypt>=4.1",           # password hashing (used directly, not via passlib)

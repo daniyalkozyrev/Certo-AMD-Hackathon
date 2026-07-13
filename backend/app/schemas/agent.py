@@ -20,7 +20,7 @@ class AgentConfig(BaseModel):
     api_key/base_url/model fall back to AGENT_DEFAULT_* settings.
 
     Extra keys are allowed and passed through to the runner — e.g. `provider`
-    ("anthropic" | "openai") and `max_steps` for agentic/multi-agent agents."""
+    ("openai") and `max_steps` for agentic/multi-agent agents."""
 
     model_config = ConfigDict(extra="allow")
 

@@ -37,15 +37,9 @@ class EnsembleJudge:
     def __init__(self, judges: list[JudgeProvider] | None = None) -> None:
         if judges is None:
             judges = []
-            # 1) Primary judge — always present.
-            if settings.judge_anthropic_enabled:
-                from app.services.judge.anthropic_judge import AnthropicJudge
-
-                judges.append(AnthropicJudge())
-            else:
-                # Self-hosted vLLM (qwen3.6-27b) via the JUDGE_* slot; respects
-                # mock_judge for offline/demo mode.
-                judges.append(VLLMJudge())
+            # 1) Primary judge — always present. Self-hosted vLLM (qwen3.6-27b) via
+            #    the JUDGE_* slot; respects mock_judge for offline/demo mode.
+            judges.append(VLLMJudge())
             # 2) Optional independent SECOND judge (e.g. Gemma) -> a real ensemble:
             #    consensus score + disagreement. Enabling it now ADDS a judge rather
             #    than replacing the primary; if it's down, grade() drops it and the

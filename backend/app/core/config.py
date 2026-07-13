@@ -5,7 +5,7 @@ from __future__ import annotations
 from functools import lru_cache
 from typing import Literal
 
-from pydantic import AliasChoices, Field, field_validator
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -129,21 +129,11 @@ class Settings(BaseSettings):
     def fireworks_fixer_enabled(self) -> bool:
         return bool(self.fireworks_api_key and self.fireworks_fixer_model)
 
-    # ── Judge: Anthropic Claude (optional primary, replaces the vLLM judge) ──
-    # Set enabled=true to use Claude as the PRIMARY judge instead of the vLLM one.
-    # Note: "Sonnet 3.5" is retired (404s) — claude-sonnet-4-6 is the drop-in successor.
-    judge_anthropic_enabled: bool = False
-    judge_anthropic_api_key: str | None = Field(
-        default=None,
-        validation_alias=AliasChoices("judge_anthropic_api_key", "anthropic_api_key"),
-    )
-    judge_anthropic_model: str = "claude-sonnet-4-6"
-
     # ── Judge #2: secondary LLM judge (ensemble) ─────────────
     # Removes single-judge subjectivity by averaging an independent grader.
     # >>> PLUG IN ANOTHER LLM HERE <<<  — set enabled=true and fill in the
     # base_url / api_key / model of any OpenAI-compatible endpoint (OpenAI,
-    # Anthropic-compatible gateway, another vLLM, etc.). Disabled by default.
+    # a gateway, another vLLM, etc.). Disabled by default.
     judge_secondary_enabled: bool = False
     judge_secondary_base_url: str = "https://api.openai.com/v1"
     judge_secondary_api_key: str | None = None
